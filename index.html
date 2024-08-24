@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <input type="text" id="search" placeholder="Pesquisar tarefas...">
+    </header>
+    <div class="task-board">
+        <div class="column" id="todo">
+            <div class="column-header">
+                <h2 contenteditable="true">Afazeres</h2>
+                <button class="delete-column">×</button>
+            </div>
+            <button class="add-task">Adicionar Tarefa</button>
+        </div>
+        
+        <div class="column" id="in-progress">
+            <div class="column-header">
+                <h2 contenteditable="true">Fazendo</h2>
+                <button class="delete-column">×</button>
+            </div>
+            <button class="add-task">Adicionar Tarefa</button>
+        </div>
+        
+        <div class="column" id="done">
+            <div class="column-header">
+                <h2 contenteditable="true">Feito</h2>
+                <button class="delete-column">×</button>
+            </div>
+            <button class="add-task">Adicionar Tarefa</button>
+        </div>
+        
+        <div class="column add-column">
+            <button class="add-column-btn">+</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
