@@ -1,0 +1,53 @@
+/*.column {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    width: 200px;
+  }
+  
+  .column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }*/
+  
+  .add-task-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .delete-column {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Column.css */
+.column {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  width: 250px; /* Define a largura de cada coluna */
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-grid {
+  margin-top: 10px;
+}
+  
