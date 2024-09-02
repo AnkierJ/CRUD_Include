@@ -1,74 +1,22 @@
-/*import { useState } from 'react';
-import { Card } from './card/card';
-import './Column.css';
-
-import { useAtividadeData } from '../hooks/useAtividadeData';
-import { Header } from '../components/Header';
-import { Board } from '../components/Board';
-
-interface ColumnProps {
-  title: string;
-}
-
-export function Column(/*{ children }: any,  { title }: ColumnProps ) {
-  const [columnTitle, setColumnTitle] = useState(title);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColumnTitle(event.target.value);
-  };
-
-  const { data } = useAtividadeData();
-
-  return (
-    <div className="column">
-      <div className="column-header">
-        {isEditing ? (
-          <input 
-            type="text" 
-            value={columnTitle} 
-            onChange={handleTitleChange} 
-            onBlur={() => setIsEditing(false)}
-            autoFocus
-          />
-        ) : (
-          <h2 onClick={() => setIsEditing(true)}>{columnTitle}</h2>
-        )}
-        <button className="delete-column">X</button>
-      </div>
-      <button className="add-task-button">Adicionar Tarefa</button>
-      
-      <div className="card-grid">
-
-        {data?.map((atividade) => (
-          <Card
-            key={atividade.id} // Chave única para cada componente Card
-            id={atividade.id}
-            title={atividade.title} 
-            description={atividade.description} 
-            date={new Date(atividade.date)} // Convertendo string para objeto Date, se necessário
-          />
-        ))}
-      </div>
-    </div>
-  );
-} */
-
 import { useState } from 'react';
 import { Card } from './card/card';
 import './Column.css';
-import { useAtividadeData } from '../hooks/useAtividadeData';
+
+import { AtividadeData } from '../interface/AtividadeData';
 
 interface ColumnProps {
+  column_id: number;
   title: string;
-  tasks: any[]; // Lista de tarefas que pertencem a esta coluna
-  onAddTask: (task: any) => void; // Função para adicionar tarefas
+  tasks: AtividadeData[]; // Tipo correto para tarefas
+  onAddTask: (task: AtividadeData) => void; // Função para adicionar tarefas
+  
 }
 
-export function Column({ title, tasks, onAddTask }: ColumnProps) {
+export function Column({ column_id, title, tasks, onAddTask}: ColumnProps) {
   const [columnTitle, setColumnTitle] = useState(title);
   const [isEditing, setIsEditing] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [columnId] = useState(column_id);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColumnTitle(event.target.value);
@@ -79,11 +27,12 @@ export function Column({ title, tasks, onAddTask }: ColumnProps) {
       const newTask = {
         id: Date.now(),
         title: newTaskTitle,
-        description: 'Descrição padrão', // Descrição inicial
-        date: new Date(), // Data atual
+        description: 'Descrição padrão',
+        date: new Date(),
+        column_id: columnId // Adicionando o ID da coluna à nova tarefa
       };
       onAddTask(newTask);
-      setNewTaskTitle(''); // Limpa o campo de título da nova tarefa
+      setNewTaskTitle('');
     }
   };
 
@@ -115,14 +64,14 @@ export function Column({ title, tasks, onAddTask }: ColumnProps) {
       <div className="card-grid">
         {tasks.map((atividade) => (
           <Card
-            key={atividade.id} // Chave única para cada componente Card
+            key={atividade.id}
             id={atividade.id}
             title={atividade.title} 
             description={atividade.description} 
-            date={new Date(atividade.date)} // Convertendo string para objeto Date, se necessário
+            date={new Date(atividade.date)}
           />
         ))}
       </div>
     </div>
   );
-} 
+}
