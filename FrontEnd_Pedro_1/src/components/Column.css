@@ -12,20 +12,9 @@
     align-items: center;
   }*/
   
-  .add-task-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
   
-  .delete-column {
-    background-color: red;
-    color: white;
+  .minimize-column {
+    background-color: transparent;
     border: none;
     padding: 2px 5px;
     border-radius: 4px;
@@ -33,21 +22,57 @@
   }
   
   /* Column.css */
-.column {
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  width: 250px; /* Define a largura de cada coluna */
-}
-
-.column-header {
+  .column {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width:  25%; /* Define a largura de cada coluna */
+    
+  }
+  
+  .column-header {
+    padding-left: 8px;
+    min-height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .column-header input{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    background-color: transparent;
+    font-size: 40;
+  }
+  .add-task{
+    display: flex;
+    flex-direction: inline;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden ;
+  }
+  .add-task input{
+    height: 20px;
+    width: 220px;
+    font-size: 14px;
+    border-color: #28a745;
+    border-width: 4px;
+    border-radius: 4px 0 0 4px;
+  }
+  .add-task-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 4px 4px 4px 0px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  .card-grid {
+    justify-content: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-grid {
+  flex-direction: column;
   margin-top: 10px;
+  padding: 10px;
 }
   

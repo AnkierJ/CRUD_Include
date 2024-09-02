@@ -1,34 +1,99 @@
 /* src/components/card/card.css */
 .card {
-    background-color: white;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    position: relative;
-  }
-  
-  .card:hover .card-description {
-    display: block;
-  }
-  
-  .card-description {
-    display: none;
-  }
-  
-  .color-selector {
-    display: flex;
-    gap: 5px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .color-selector button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
+  align-self: center;
+  width: 95%;
+  max-width: 95%;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 8px;
+  padding-bottom: 0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card:hover .card-description {
+  display: block;
+}
+
+.card-description {
+  display: none;
+}
+
+.editButton {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 20%;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.editButton:hover {
+  border-color: transparent;
+}
+.tagButton {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 20%;
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.tagButton:hover {
+  border-color: transparent;
+}
+
+.colorPicker {
+  display: flex;
+  justify-content: center;
+  right: 0;
+  margin-block: 8px;
+}
+
+.editContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 30px;
+}
+.editContainer input {
+  font-size: 24;
+  text-align: center;
+  border-color: transparent;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  color: black;
+}
+.saveButton {
+  color: white;
+  height: 30px;
+  background-color: #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dragging {
+  opacity: 0.5;
+}
+.infoContainer {
+  overflow: hidden;
+  max-width: 90%; /* ajuste o valor de acordo com a largura da div */
+  text-align: justify;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}

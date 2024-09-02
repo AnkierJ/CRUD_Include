@@ -1,5 +1,7 @@
 .header {
     display: inline-flex;
+    align-items: center;
+    gap: 8px;
     justify-content: center;
     padding: 10px;
     background-color: #333;
@@ -9,7 +11,9 @@
   }
   
   .search-bar {
-    width: 300px;
+    background-color: #ececec;
+    height: 20px;
+    width: 320px;
     padding: 5px;
     border-radius: 4px;
     border: none;

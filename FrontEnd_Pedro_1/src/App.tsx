@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Board />
 
-      {/*<div className="card-grid">
+      <div className="card-grid">
         {data?.map((atividade) => (
           <Card
             key={atividade.id} // Chave única para cada componente Card
@@ -22,7 +22,7 @@ function App() {
             date={new Date(atividade.date)} // Convertendo string para objeto Date, se necessário
           />
         ))}
-        </div>*/}
+        </div>
 
       <footer className="app-footer">
         <p>&copy; 2024 - Meu Gerenciador de Tarefas</p>
