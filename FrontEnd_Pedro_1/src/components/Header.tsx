@@ -1,5 +1,6 @@
 
 import './Header.css';
+import { IoSearch } from "react-icons/io5";
 
 export function Header() {
   return (
@@ -10,6 +11,7 @@ export function Header() {
         placeholder="Pesquisar tarefas..." 
         className="search-bar" 
       />
+      <IoSearch color='white' size={20}/>
     </header>
   );
 }
