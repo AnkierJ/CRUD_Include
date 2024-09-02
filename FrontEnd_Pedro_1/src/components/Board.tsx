@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Column } from "./Column";
 import "./Board.css";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Card } from '../components/card/card';
 import { useAtividadeData } from '../hooks/useAtividadeData';
 
 export function Board() {
