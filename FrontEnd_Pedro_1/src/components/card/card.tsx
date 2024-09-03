@@ -1,11 +1,11 @@
-import React from "react";
 import { useState } from "react";
 import "./Card.css";
 import { CirclePicker } from "react-color";
 import { AiFillTag, AiFillEdit, AiOutlineCheckCircle } from "react-icons/ai";
 
 interface CardProps {
-  id: number;
+  column_id: number,
+  id?: number;
   title: string;
   description: string;
   date: Date;
