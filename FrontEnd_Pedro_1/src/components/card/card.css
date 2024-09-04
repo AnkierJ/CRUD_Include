@@ -15,51 +15,79 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.card button:active, .card button:focus{
+  outline: 0;
+}
 .card:hover .card-description {
   display: block;
+}
+.card:hover .buttons {
+  display: flex;
+}
+.card:hover .navarrows {
+  display: flex;
 }
 
 .card-description {
   display: none;
 }
-
-.editButton {
-  display: grid;
-  place-items: center;
-  justify-content: center;
+.buttons{
+  width: 20%;
+  height: 33%;
+  display: none;
+  flex-direction: row;
   align-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 20%;
-  background-color: transparent;
+  justify-content: right;
   position: absolute;
   top: 0;
   right: 0;
 }
-.editButton:hover {
-  border-color: transparent;
-}
-.tagButton {
+.buttons button{
   display: grid;
-  place-items: center;
+  place-content: center;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
   border-radius: 20%;
+  padding: 12px;
   background-color: transparent;
+}
+.buttons button:hover {
+  border-color: transparent;
+}
+
+.navarrows{
+  width: 20%;
+  height: 33%;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
   position: absolute;
   bottom: 0;
   right: 0;
 }
-.tagButton:hover {
+.navarrows button{
+  display: grid;
+  place-content: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+  border-radius: 20%;
+  padding: 12px;
+  background-color: transparent;
+}
+.navarrows button:hover{
   border-color: transparent;
 }
 
 .colorPicker {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   right: 0;
   margin-block: 8px;
 }
@@ -69,7 +97,7 @@
   flex-direction: column;
   gap: 10px;
   padding-top: 8px;
-  padding-bottom: 30px;
+  padding-bottom: 16px;
 }
 .editContainer input {
   font-size: 24;
@@ -87,12 +115,8 @@
   justify-content: center;
   align-items: center;
 }
-.dragging {
-  opacity: 0.5;
-}
 .infoContainer {
-  overflow: hidden;
-  max-width: 90%; /* ajuste o valor de acordo com a largura da div */
+  max-width: 80%; /* ajuste o valor de acordo com a largura da div */
   text-align: justify;
   overflow-wrap: break-word;
   white-space: pre-wrap;
