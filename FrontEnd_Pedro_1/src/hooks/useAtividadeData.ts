@@ -2,7 +2,7 @@ import { useQuery } from "../../node_modules/@tanstack/react-query/build/legacy/
 import axios, { AxiosPromise } from "../../node_modules/axios/index"
 import { AtividadeData } from "../interface/AtividadeData";
 
-const API_URL = 'http://localhost:8082';
+const API_URL = 'http://localhost:8081';
 
 const fetchData = async (): AxiosPromise<AtividadeData[]> => {
     const reponse = axios.get(API_URL + '/task/consultartask');

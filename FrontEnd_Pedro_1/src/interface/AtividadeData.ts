@@ -1,7 +1,7 @@
 export interface AtividadeData {
     column_id: number,
-    id: number,
+    id?: number,
     title: string,
-    description: string
+    description: string,
     date: Date
 }

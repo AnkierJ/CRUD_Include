@@ -3,21 +3,20 @@ import { useState } from "react";
 import { Card } from "./card/card";
 import "./Column.css";
 import { AtividadeData } from "../interface/AtividadeData";
+//import { postData } from "../hooks/ChangeAtividadeData";
 
 interface ColumnProps {
-  column_id: number;
+  column_id_prop: number;
   title: string;
   tasks: AtividadeData[]; // Tipo correto para tarefas
   onAddTask: (task: AtividadeData) => void; // Função para adicionar tarefas
-  
 }
 
-export function Column({ column_id, title, tasks, onAddTask}: ColumnProps) {
+export function Column(this: any, { column_id_prop, title, tasks, onAddTask }: ColumnProps) {
   const [columnTitle, setColumnTitle] = useState(title);
   const [isEditing, setIsEditing] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [columnId] = useState(column_id);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColumnTitle(event.target.value);
@@ -29,17 +28,17 @@ export function Column({ column_id, title, tasks, onAddTask}: ColumnProps) {
     }
   };
   const handleAddTask = () => {
+
     if (newTaskTitle.trim()) {
       const newTask = {
-        id: Date.now(),
+        column_id: 0, // Adicionando o ID da coluna à nova tarefa
         title: newTaskTitle,
         description: '',
         date: new Date(),
         deadline: '',
-        column_id: columnId // Adicionando o ID da coluna à nova tarefa
       };
       onAddTask(newTask);
-      setNewTaskTitle('');
+      setNewTaskTitle("");
     }
   };
 
@@ -103,7 +102,7 @@ export function Column({ column_id, title, tasks, onAddTask}: ColumnProps) {
             title={atividade.title}
             description={atividade.description}
             date={new Date(atividade.date)} // Convertendo string para objeto Date, se necessário
-            columnId={columnId}
+            column_id={atividade.column_id}
           />
         ))}
       </div>

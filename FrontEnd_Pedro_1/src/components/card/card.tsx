@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import "./Card.css";
 import { CirclePicker } from "react-color";
@@ -11,8 +10,12 @@ import {
   AiOutlineRight,
 } from "react-icons/ai";
 
+import { editData } from "../../hooks/EditAtividadeData";
+import { AtividadeData } from "../../interface/AtividadeData";
+
 interface CardProps {
-  id: number;
+  column_id: number;
+  id?: number;
   title: string;
   description: string;
   date: Date;
@@ -20,7 +23,8 @@ interface CardProps {
   columnId: number;
 }
 
-export function Card({ title, description, date, deadline, columnId }: CardProps) {
+
+export function Card({ column_id, id, title, description, date, deadline }: CardProps) {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "numeric",
@@ -34,9 +38,27 @@ export function Card({ title, description, date, deadline, columnId }: CardProps
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
   const [newDeadline, setNewDeadline] = useState(deadline);
+  const [newColumn_Id, setNewColumn_Id] = useState(Number);
+  const [newId, setNewId] = useState(id)
+
+  const edditedAtividade: AtividadeData = {
+    id: newId,
+    title: newTitle,
+    column_id: newColumn_Id,
+    description: newDescription,
+    date: newDate
+  };
+
   const handleSave = () => {
+
+    alert("Column_Id:" + newColumn_Id);
+    editData(edditedAtividade);
+
     setIsEditing(false);
     setIsTagging(false);
+
+    
+
     // Aqui você pode enviar as atualizações para o backend, se necessário.
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -78,6 +100,12 @@ export function Card({ title, description, date, deadline, columnId }: CardProps
             onChange={(e) => setNewDeadline(new Date(e.target.value))}
             onKeyDown={handleKeyDown}
           />
+          <select onChange={(e) => setNewColumn_Id(e.target.selectedIndex + 1)}>
+            <option value={1}> Afazeres </option>
+            <option value={2}> Fazendo </option>
+            <option value={3}> Feito </option>
+          </select>
+
           <button onClick={handleSave} className="saveButton">
             <AiOutlineCheckCircle
               color="white"
