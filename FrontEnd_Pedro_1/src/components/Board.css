@@ -18,7 +18,9 @@
     width: 25%; /* Define a largura de cada coluna */
     height: 100%;
   }
-  
+  .add-column button:active, .add-column button:focus{
+    outline-color: #fff;
+  }
   .add-column-button {
     width: 50px;
     height: 50px;
