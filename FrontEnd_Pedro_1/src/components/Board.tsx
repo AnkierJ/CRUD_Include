@@ -14,7 +14,7 @@ export function Board() {
   const LoadToBD = (task: AtividadeData) => {
     let load = true;
 
-    alert(typeof(task.column_id))
+    //alert(typeof(task.column_id))
 
     if (task.column_id == 1) {
       for (let i = 0; i < afazeres.length; i++) {
