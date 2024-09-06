@@ -13,14 +13,17 @@ import {
 import { editData } from "../../hooks/EditAtividadeData";
 import { AtividadeData } from "../../interface/AtividadeData";
 
+import { deleteData } from "../../hooks/DeleteAtividadeData";
+
+import { EditAtividadeData } from "../../hooks/EditAtividadeData";
+
 interface CardProps {
   column_id: number;
   id?: number;
   title: string;
   description: string;
   date: Date;
-  deadline: Date;
-  columnId: number;
+  deadline?: Date;
 }
 
 
@@ -39,7 +42,25 @@ export function Card({ column_id, id, title, description, date, deadline }: Card
   const [newDescription, setNewDescription] = useState(description);
   const [newDeadline, setNewDeadline] = useState(deadline);
   const [newColumn_Id, setNewColumn_Id] = useState(Number);
-  const [newId, setNewId] = useState(id)
+  const [newId] = useState(id)
+  const [newDate] = useState(date);
+  const [isDeleted, setisDeleted] = useState(false);
+
+  const goLeft = ( /*newColumn_Id: number | undefined*/ ) => {
+    if ( column_id ){
+      column_id = (column_id - 1);
+      //alert("column_id: " + column_id)
+     handleSave()
+    }
+  }
+
+  const goRight = ( /*newColumn_Id: number | undefined*/ ) => {
+    if ( column_id ){
+      column_id = (column_id + 1);
+      //alert("column_id: " + column_id)
+      handleSave()
+    }
+  }
 
   const edditedAtividade: AtividadeData = {
     id: newId,
@@ -51,28 +72,47 @@ export function Card({ column_id, id, title, description, date, deadline }: Card
 
   const handleSave = () => {
 
-    alert("Column_Id:" + newColumn_Id);
-    editData(edditedAtividade);
+    /*alert("Column_Id:" + newColumn_Id);
+    alert("Id: " + newId)
+    alert("column_id: " + column_id)*/
+
+    // newColumn_ID == 0 acontece ao editar a task e não escolher uma opção de nova coluna do select.
+    // Caso aconteça, a task permanecerá na mesma coluna
+    if ( newColumn_Id == 0 ) { edditedAtividade.column_id =  column_id }
+
+    //alert("Column_Id:" + newColumn_Id);
+
+    // salvando as atividade editada no banco de dados.
+   editData(edditedAtividade);
 
     setIsEditing(false);
     setIsTagging(false);
-
     
+    parent.location.reload()
+    //window.location.reload()
 
-    // Aqui você pode enviar as atualizações para o backend, se necessário.
   };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleSave();
     }
   };
+
   const handleChangeComplete = (color: any) => {
     setCurrentColor(color.hex);
-    handleSave();
+    setIsEditing(false);
+    setIsTagging(false);
   };
 
+  const deleteTask = () => {
+    deleteData(edditedAtividade)
+    setisDeleted(true)
+  }
+
   return (
-    <div className="card" style={{ borderLeft: `4px solid ${currentColor}` }}>
+
+    <div className="card" style= {isDeleted ? { display: "none" } : { display: "flex" , borderLeft: `4px solid ${currentColor}` }}>
       {isEditing ? (
         <div className="editContainer">
           <input
@@ -100,7 +140,7 @@ export function Card({ column_id, id, title, description, date, deadline }: Card
             onChange={(e) => setNewDeadline(new Date(e.target.value))}
             onKeyDown={handleKeyDown}
           />
-          <select onChange={(e) => setNewColumn_Id(e.target.selectedIndex + 1)}>
+          <select onChange={(e) => setNewColumn_Id(e.target.selectedIndex + 1)} defaultValue={column_id}>
             <option value={1}> Afazeres </option>
             <option value={2}> Fazendo </option>
             <option value={3}> Feito </option>
@@ -124,7 +164,7 @@ export function Card({ column_id, id, title, description, date, deadline }: Card
             <button onClick={() => setIsTagging(true)}>
               <AiFillTag color="grey" size={16} />
             </button>
-            <button>
+            <button onClick={() => deleteTask() /*setisDeleted(true)*/}>
               <AiFillCloseCircle color="grey" size={16} />
             </button>
           </div>
@@ -173,17 +213,17 @@ export function Card({ column_id, id, title, description, date, deadline }: Card
             </div>
           ) : null}
           <div className="navarrows">
-            <button
-              style={columnId == 1 ? { display: "none" } : { display: "grid" }}
+            <button onClick={() => goLeft() }
+              style={column_id == 1 ? { display: "none" } : { display: "grid" }}
             >
               <AiOutlineLeft color="grey" size={16} />
             </button>
-            <button>
+            <button onClick={() => goRight()}>
               <AiOutlineRight
                 color="grey"
                 size={16}
                 style={
-                  columnId == 3 ? { display: "none" } : { display: "grid" }
+                  column_id == 3 ? { display: "none" } : { display: "grid" }
                 }
               />
             </button>

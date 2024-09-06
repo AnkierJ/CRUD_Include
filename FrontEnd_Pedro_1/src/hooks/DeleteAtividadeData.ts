@@ -4,16 +4,16 @@ import { AtividadeData } from "../interface/AtividadeData";
 
 const API_URL = 'http://localhost:8081';
 
-export const editData = async (data: AtividadeData): AxiosPromise<AtividadeData[]> => {
-    const reponse = axios.post(API_URL + '/task/edittask', data);
-    await reponse
+export const deleteData = async (data: AtividadeData): AxiosPromise<AtividadeData[]> => {
+    const reponse = axios.post(API_URL + '/task/deletetask', data);
+    (await reponse)
     return reponse;
 }
 
-export function EditAtividadeData(){
+export function ChangeAtividadeData(){
     const queryClientPost = useQueryClient();
     const mutate = useMutation({
-        mutationFn: editData,
+        mutationFn: deleteData,
         retry: 2,
         onSuccess: () => {
             queryClientPost.invalidateQueries({ queryKey: ['atividade-data'] })
